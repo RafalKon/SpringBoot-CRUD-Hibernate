@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Groups</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+ 
+</head>
+<body>
+	<h1>Groups</h1>
+    <table class="table table-striped">
+		<tr>
+			<th>Id</th>
+		    <th>Name</th>
+
+		</tr>  
+    	<tr th:each = "group : ${groups}">
+    		<td th:text="${group.id}"></td> 
+    		<td th:text="${group.name}"></td>
+    		
+    	<td><a th:href="@{/delete/{id}(id=${group.id})}" class="btn btn-danger">Delete</a></td> 
+    	<td><a th:href="@{/editgroup/{id}(id=${group.id})}"
+				class="btn btn-danger">Edit</a></td>
+    	</tr>
+    </table>
+      <a href="/user"><button>Users</button></a>
+    <h1>Add Group</h1>
+    <div>
+		<form  action="#" th:action="@{/savegroup}" th:object="${groups}"  method="post">
+		<div style="clear: both; display: block; height: 10px;"></div>
+			<input type="text" id="groupId" name="groupId" class="form-control" placeholder="Group Id" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<input type="text" id="name" name="name" class="form-control" placeholder="Group Name"/> 
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input type="submit" class="btn btn-success" value="Save"></input>
+		</form>
+	</div>
+    
+</body>
+</html>
